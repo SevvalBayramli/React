@@ -8,7 +8,7 @@ export default class ADD extends Component {
         key: "",
         email: "",
         password: "",
-        atlassian: "",
+        atlassian:"",
         isSuccess: undefined
     };
 
@@ -16,10 +16,12 @@ export default class ADD extends Component {
         e.preventDefault();
         const result = await post({
             key: this.state.key, path: this.state.path
-            , atlassian: this.state.atlassian, email: this.state.email, password: this.state.password
+            ,  email: this.state.email, password: this.state.password,atlassian:this.state.atlassian
         })
-        console.log(result)
+
+        console.log("result: "+result)
         this.setState({ isSuccess: result })
+        
     }
 
     onKeyChange = event => {
@@ -27,11 +29,11 @@ export default class ADD extends Component {
         this.setState({ key: event.target.value });
 
     };
-    onAtlassianChange = event => {
-        // Update the state 
-        this.setState({ atlassian: event.target.value });
+     onAtlassianChange = event => {
+         // Update the state 
+         this.setState({ atlassian: event.target.value });
 
-    };
+     };
     onEmailChange = event => {
         // Update the state 
         this.setState({ email: event.target.value });
@@ -69,7 +71,7 @@ export default class ADD extends Component {
                     id="atlassian"
                     type="txt"
                     onChange={this.onAtlassianChange}
-                />
+                /> 
                 Email:<Input
                     id="email"
                     type="txt"
