@@ -13,14 +13,13 @@
   }
 }
 form{
-  color: #fdfdfd;
+  color: #970505;
 
 }
 h3{
-  color: #fdfdfd;
+  color: #a60a0a;
 }
 div{
-  background-color:#020303;
   margin-left: 100px;
   margin-right: 100px;
   
@@ -30,7 +29,6 @@ Button{
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

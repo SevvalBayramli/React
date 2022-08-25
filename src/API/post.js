@@ -23,3 +23,5 @@ const  post=async(data)=>{
 }
 export default post;
 //async await promise obje kullanımı 
+
+

@@ -1,79 +1,51 @@
 import React from 'react';
-import { Input, Button, Alert } from 'reactstrap'
-import post from './API/post'
+import {Container, Row, Col } from 'reactstrap'
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import ADD from './components/ADD';
+import JIRALIST from './components/jiralist';
 
 
 class App extends React.Component {
 
-	state = {
-		path: "",
-		key: "",
-		isSuccess: undefined
+	state={currentTool:undefined}
+
+	changeTool=tool=>{
+		this.setState({currentTool:tool.toolName});
+		console.log(this.state.currentTool)
 	};
-
-
-	submit = async (e) => {
-		e.preventDefault();
-		const result = await post({ key: this.state.key, path: this.state.path })
-		console.log(result)
-		this.setState({ isSuccess: result })
-	}
-
-
-	onKeyChange = event => {
-		// Update the state 
-		this.setState({ key: event.target.value });
-
-	};
-	onPathChange = event => {
-		// Update the state 
-		this.setState({ path: event.target.value });
-
-	};
-
+	
 
 	render() {
 
 		return (
 			<div>
+				<Container>
+					<Row>
+						<h3 color='#e42929'>
+							Jira Tool
+						</h3>
+					</Row>
+					
+					
+					<Row>
+						<Col  color='#e42929'>
+							<br></br>
+						<JIRALIST
+						changeTool={this.changeTool}
+						currentTool={this.state.currentTool}>
+						
 
-				<h3 color='#e42929'>
-					Upload File Jira
-				</h3>
-				<div>
-					<h3>File</h3>
-					<form onSubmit={this.submit}>
-						<br></br>
+						</JIRALIST>
+						</Col>
+						<Col >
+						{this.state.currentTool==="AddFile" ?<ADD></ADD>:undefined}
+							
+						</Col>
 
-						File Path:<Input
-							id="path"
-							type="txt"
-							onChange={this.onPathChange}
-						/>
-						JiraKey:<Input
-							id="key"
-							type="txt"
-							onChange={this.onKeyChange}
-						/>
-						<Button
-							variant="light"
-							outline
-							type='submit'
-
-						>Connect to Jira</Button>
-
-					</form>
-
-
-					{this.state.isSuccess === 'success' ? <Alert>Connected</Alert> :
-						this.state.isSuccess === 'error' ? <Alert color='danger'>Error</Alert> : undefined}
-
-
-
-				</div>
-
+					</Row>
+					</Container>
+					
 			</div>
 		);
 	}
